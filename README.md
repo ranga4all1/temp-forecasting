@@ -47,7 +47,7 @@ Prophet is a procedure for forecasting time series data based on an additive mod
 # How to run this project?
 
 ## Prerequisites
-- `anaconda` or `miniconda`` with conda package manager
+- `anaconda` or `miniconda` with conda package manager
 - `docker` and `docker-compose`
 - `Terraform` and `Google Cloud SDK`
 - Access to Google Cloud Platform (Free trial account may be sufficient)
@@ -71,7 +71,7 @@ conda activate time-series
 ```
 2. Clone this repository
 ```
-
+git clone https://github.com/ranga4all1/temp-forecasting.git
 ```
 3. Install dependencies
 ```
