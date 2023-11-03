@@ -192,7 +192,7 @@ python test.py
 ```
 conda env export > environment.yml
 ```
-2. create a Docker container for your FastAPI service using a Dockerfile. This may take a while...
+2. create a Docker container for your FastAPI service using a Dockerfile. This may take a while, wait till all steps are completed successfully and you are back to original prompt
 ```
 docker build -t predict-fastapi .
 ```
@@ -213,6 +213,12 @@ OR by using swagger UI: http://localhost:8080/docs
 
 ![](images/temp-forecast-docker-fastapi-1.png)
 ![](images/temp-forecast-docker-fastapi-2.png)
+
+5. Stop service using
+```
+docker ps
+docker stop <container_id>
+```
 
 #### Step 3: Setup Google Cloud Platform (GCP)
 
