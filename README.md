@@ -91,6 +91,7 @@ cd deployment
 python train.py
 ```
 This should save model with name - `prophet_base_model.pkl`
+
 2. Run fastAPI service using below script
 ```
 uvicorn predict-fastapi:app --reload --port 8080
