@@ -148,7 +148,7 @@ uvicorn predict-fastapi:app --reload --port 8080
     }
     ```
 
-- Automated testing using:
+- Automated testing using: From another terminal, run:
     ```
     python test.py
     ```
@@ -157,6 +157,8 @@ uvicorn predict-fastapi:app --reload --port 8080
     API call was successful
     {'forecast': [{'ds': '2017-01-01T00:00:00', 'yhat': 14.350417477963536, 'yhat_lower': 11.788658429567555, 'yhat_upper': 16.991241598055787}, {'ds': '2017-01-02T00:00:00', 'yhat': 14.560720771673228, 'yhat_lower': 11.755473296591438, 'yhat_upper': 17.21869201339477},.....
     ```
+
+4. Revert back to original terminal window and press `Ctrl+C` to stop the service
 
 ### D) Deployment
 
@@ -177,11 +179,12 @@ conda create -n temp-forecast python=3.12
 conda activate temp-forecast
 pip install -r requirements.txt
 ```
-Run and Test using:
+1. Run and Test using:
 ```
 python predict-fastapi.py
 python test.py
 ```
+2. Stop the service after testing
 
 #### Step 2: Dockerize the Conda Environment
 
@@ -189,7 +192,7 @@ python test.py
 ```
 conda env export > environment.yml
 ```
-2. create a Docker container for your FastAPI service using a Dockerfile
+2. create a Docker container for your FastAPI service using a Dockerfile. This may take a while...
 ```
 docker build -t predict-fastapi .
 ```
