@@ -1,0 +1,10 @@
+prophet
+jupyter
+pandas
+scikit-learn
+plotly
+seaborn
+pickle
+fastapi
+uvicorn
+requests
