@@ -8,6 +8,5 @@ jupyter
 scikit-learn
 plotly
 seaborn
-pickle
 requests
 statsmodels
