@@ -20,7 +20,7 @@ Temperature forecasting using time series forecasting involves using historical 
 2. Machine Learning -Linear Regression, XGBoost, Random Forest, etc.
 3. Deep Learning - RNN, LSTM
 
-Considering type and amount of data available, we will be focusing on classical/statistical models and frameworks e. g. Prophet for our task at hand.
+Considering type and amount of data available, we will be focusing on classical/statistical models and frameworks e. g. SARIMA and Prophet for our task at hand.
 
 Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
 
@@ -38,16 +38,11 @@ Prophet is a procedure for forecasting time series data based on an additive mod
 - Historical temp data from 2013 to 2017`
 - Location: Delhi, India
 
-## EDA, Data preprocessing, Visualizations and Model training experimentation
-
-- Refer to Jupyter notebooks:
-    - `temp-forecasting-model.ipynb`
-    - `use-model-for-forecast.ipynb`
 
 # How to run this project?
 
 ## Prerequisites
-- `anaconda` or `miniconda` with conda package manager
+- `anaconda` or `miniconda`` with conda package manager
 - `docker` and `docker-compose`
 - `Terraform` and `Google Cloud SDK`
 - Access to Google Cloud Platform (Free trial account may be sufficient)
@@ -71,7 +66,7 @@ conda activate time-series
 ```
 2. Clone this repository
 ```
-git clone https://github.com/ranga4all1/temp-forecasting.git
+
 ```
 3. Install dependencies
 ```
@@ -91,7 +86,6 @@ cd deployment
 python train.py
 ```
 This should save model with name - `prophet_base_model.pkl`
-
 2. Run fastAPI service using below script
 ```
 uvicorn predict-fastapi:app --reload --port 8080
@@ -148,7 +142,7 @@ uvicorn predict-fastapi:app --reload --port 8080
     }
     ```
 
-- Automated testing using: From another terminal, run:
+- Automated testing using:
     ```
     python test.py
     ```
@@ -157,8 +151,6 @@ uvicorn predict-fastapi:app --reload --port 8080
     API call was successful
     {'forecast': [{'ds': '2017-01-01T00:00:00', 'yhat': 14.350417477963536, 'yhat_lower': 11.788658429567555, 'yhat_upper': 16.991241598055787}, {'ds': '2017-01-02T00:00:00', 'yhat': 14.560720771673228, 'yhat_lower': 11.755473296591438, 'yhat_upper': 17.21869201339477},.....
     ```
-
-4. Revert back to original terminal window and press `Ctrl+C` to stop the service
 
 ### D) Deployment
 
@@ -179,12 +171,11 @@ conda create -n temp-forecast python=3.12
 conda activate temp-forecast
 pip install -r requirements.txt
 ```
-1. Run and Test using:
+Run and Test using:
 ```
 python predict-fastapi.py
 python test.py
 ```
-2. Stop the service after testing
 
 #### Step 2: Dockerize the Conda Environment
 
@@ -192,7 +183,7 @@ python test.py
 ```
 conda env export > environment.yml
 ```
-2. create a Docker container for your FastAPI service using a Dockerfile. This may take a while, wait till all steps are completed successfully and you are back to original prompt
+2. create a Docker container for your FastAPI service using a Dockerfile
 ```
 docker build -t predict-fastapi .
 ```
@@ -213,12 +204,6 @@ OR by using swagger UI: http://localhost:8080/docs
 
 ![](images/temp-forecast-docker-fastapi-1.png)
 ![](images/temp-forecast-docker-fastapi-2.png)
-
-5. Stop service using
-```
-docker ps
-docker stop <container_id>
-```
 
 #### Step 3: Setup Google Cloud Platform (GCP)
 
@@ -244,13 +229,7 @@ docker stop <container_id>
     - Cloud Resource Manager API
 
 #### Step 4: Create infrastructure on Google Cloud Platform (GCP) using Terraform
-1. Update `main.tf` file in `terraform-gcp` folder with below parameters
-- credentials = file("YOUR-SERVICE-KEY")
-- project     = "YOUR-PROJECT-ID"
-- region      = "YOUR-REGION"
-- location    = "ROUR-REGION"
-
-2. Run below scripts
+1. Run below scripts
 ```
 cd terraform-gcp
 terraform init
@@ -301,7 +280,7 @@ gcloud container images list --repository=gcr.io/<YOUR_PROJECT_ID>
 #### Step 7: Test the deployed web service using the API call
 
 1. Manual test - fastAPI swagger UI: https://temp-forecast-container-fegho6jisa-wn.a.run.app/docs
-2. Automated test - Update `test-cloud.py` with your Cloud Run URL and then run below script
+2. Automated test
 ```
 cd ..
 python test-cloud.py
@@ -311,7 +290,6 @@ Note: This service is currently deployed to Google CLOUD RUN and is available at
 ![](images/temp-forecast-gcp-1.png)
 ![](images/temp-forecast-gcp-2.png)
 
----------------------------------
 ---------------------------------
 
 

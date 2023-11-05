@@ -1,9 +1,13 @@
-prophet
+pandas==2.1.1
+prophet==1.1.5
+pydantic==2.4.2
+fastapi==0.104.0
+requests==2.31.0
+uvicorn==0.23.2
 jupyter
-pandas
 scikit-learn
 plotly
 seaborn
-fastapi
-uvicorn
+pickle
 requests
+statsmodels
